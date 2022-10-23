@@ -1,0 +1,66 @@
+<template>
+  <div
+      style="
+        border:2px dotted red;
+        height: calc(100% - 38px);
+        height: 400px;
+        padding: 0px 0 0;
+        margin: 0 12px;
+        max-width: 96%;
+      "
+    >
+    <ag-grid-vue
+         style="height:100%;"
+        :columnDefs="columnDefs"
+        :rowData="rowData"
+        class="ag-theme-balham"
+      ></ag-grid-vue>
+      <!-- <ag-grid-vue
+        id="grid"
+        class="ag-theme-balham"
+        ref="grid"
+        :default-col-def="defaultColDef"
+        :column-defs="columnDefs"
+        :grid-options="gridOptions"
+        :enable-range-selection="true"
+        :suppress-multi-range-selection="true"
+        :overlay-no-rows-template="overlayNoRowsTemplate"
+        :row-selection="rowSelection"
+        style="height:100%;"
+        @grid-ready="onGridReady"
+        row-model-type="infinite"
+        cache-overflow-size="2"
+        max-concurrent-datasource-requests="1"
+        infinite-initial-row-count="150"
+        max-blocks-in-cache="10"
+      ></ag-grid-vue> -->
+    </div>
+</template>
+
+<script>
+export default {
+   components: { 
+                "ag-grid-vue":  (window["ag-grid-vue3"]||{}).AgGridVue 
+               },
+
+  data() {
+    return {
+      columnDefs: [
+        { field: "abstractinfo" },
+        { field: "currentbalance" },
+        { field: "payeeacctname",width:400 }
+        
+      ],
+      rowData: []
+    };
+  },
+  
+  created() {
+    console.dir(window["ag-grid-vue3"]);
+  }
+
+};
+</script>
+
+<style scoped>
+</style>

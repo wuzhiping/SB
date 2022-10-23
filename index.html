@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+
+        html {
+            background: url(./assets/loading.gif) no-repeat center center fixed;
+            -webkit-background-size: center;
+            -moz-background-size: center;
+            -o-background-size: center;
+            background-size: center;
+            overflow-y: hidden;
+        }
+    </style>
+    <script src="./node_modules/vue/dist/vue.global.prod.js"></script>
+    <script src="./node_modules/vue3-sfc-loader/dist/vue3-sfc-loader.js"></script>
+
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script src="./node_modules/vue-router/dist/vue-router.global.prod.js"></script>
+
+    <!-- <link rel=manifest href=./manifest.json>
+    <script>
+        if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+            .register('./service-worker.js', { scope: './' })
+            .then(registration => {
+            console.log(
+                'ServiceWorker registration successful with scope: ',
+                registration.scope
+            )
+            })
+            .catch(err => {
+            console.log('ServiceWorker registration failed: ', err)
+            })
+        }
+        
+        document.addEventListener("contextmenu", function (event) { event.preventDefault(); });
+    </script> -->
+    <title>TDD</title>
+</head>
+
+<body cloak style="background: #fff;">
+    <div id="app">
+        <router-view v-slot="{ Component }">
+          <template v-if="$route.meta.keepAlive">
+            <keep-alive>
+              <component :is="Component" />
+            </keep-alive>
+          </template>
+          <template v-else>
+            <component :is="Component" />
+          </template>
+        </router-view>
+      </div>
+</body>
+
+<script src="./node_modules/quasar/dist/quasar.umd.prod.js"></script>
+<link href="./node_modules/quasar/dist/quasar.prod.css" rel="stylesheet" type="text/css">
+
+<link href="./node_modules/material-icons/iconfont/material-icons.css" rel="stylesheet" type="text/css">
+<link href="./node_modules/line-awesome/dist/line-awesome/css/line-awesome.min.css" rel="stylesheet" type="text/css">
+
+<link href="./assets/css/app.css" rel="stylesheet" type="text/css">
+<script>
+    const $$ = Vue;
+    const options = {
+        moduleCache: {
+            vue: Vue,
+        },
+        async getFile(url) {
+            
+            console.log('getFile:', url)
+            var rs = url.split("?")[0].split(".");
+            var ext= rs[rs.length-1];
+
+            const res = await fetch(url);
+            if (!res.ok)
+                throw Object.assign(new Error(res.statusText + ' ' + url), { res });
+
+            return {
+                getContentData: asBinary => asBinary ? res.arrayBuffer() : res.text(),
+                type: '.'+ext,
+            }
+        },
+        addStyle(textContent) { /* unused here */
+            document.head.insertBefore(
+                Object.assign(document.createElement('style'), { textContent }),
+                document.head.getElementsByTagName('style')[0] || null);
+        },
+        customBlockHandler(block, filename, options) {
+            //console.log(block)
+        },
+        // compiledCache: {
+        //     set(key, str) {
+        //         console.log(key, str)
+        //     },
+        //     get(key) {
+        //         console.log(key)
+        //     },
+        // },
+        log(type, ...args) {
+            console[type](...args);
+        },
+        handleModule: async function (type, getContentData, path, options) {
+            console.dir("["+type+"]: "+path);
+            switch (type) { 
+                case '.json':
+                    return JSON.parse(getContentData);
+                // case '.js':
+                //     var script = document.createElement("script");
+                //     script.type = "module";
+                //     script.src = path;
+                //     document.body.appendChild(script);
+                // return null;
+                case '.css':
+                    options.addStyle(await getContentData(false));
+                    return null;
+            } 
+        },
+    };
+    let app;
+    const { loadModule } = window['vue3-sfc-loader'];
+
+    // (async () => {
+        const args = {
+            name: 'app'
+        }
+
+        app = Vue.createApp(args);
+        let routes = [
+        {
+            path: '/',
+            component: () => loadModule(`layouts/MainLayout.vue`, options),
+            children: [
+            {
+                name: 'HOME',
+                path: '',
+                component: () =>
+                loadModule(`pages/Index.vue?_t_=${Date.now()}`, options),
+                meta: {
+                keepAlive: true,
+                },
+            },
+            ],
+        },
+
+        // Always leave this as last one
+        {
+            name: 'NotFound',
+            path: '/:catchAll(.*)*',
+            component: () => loadModule(`pages/404.vue?ver=1`, options),
+        },
+        ]
+        const router = VueRouter.createRouter({
+            scrollBehavior: () => ({ left: 0, top: 0 }),
+            history: VueRouter.createWebHashHistory(),
+            routes: routes
+        });
+
+        router.beforeEach((to, from, next) => {
+        next()
+        //app.$indicator.open();
+        })
+
+        router.afterEach((to, from) => {
+        //app.$indicator.close();
+        })
+
+        app.use(Quasar)
+           .use(router)
+           //.use(i18n)
+           .mount('#app');
+    // })();
+</script>
+<link href="./node_modules/ag-grid-community/dist/styles/ag-grid.css" rel="stylesheet" type="text/css">
+<link href="./node_modules/ag-grid-community/dist/styles/ag-theme-balham.min.css" rel="stylesheet" type="text/css">
+<!-- <script defer="defer" src="./node_modules/ag-grid-community/dist/ag-grid-community.js"></script> -->
+<script defer="defer" src="./node_modules/ag-grid-enterprise/dist/ag-grid-enterprise.min.noStyle.js"></script>
+<script defer="defer" src="./node_modules/ag-grid-vue3/dist/ag-grid-vue3.umd.min.js"></script>
+
+</html>

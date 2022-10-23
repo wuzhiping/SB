@@ -1,0 +1,58 @@
+{
+  "name": "dev",
+  "version": "1.0.0",
+  "description": "",
+  "dependencies": {
+    "@chenfengyuan/vue-qrcode": "^2.0.0",
+    "ag-grid-community": "^28.2.0",
+    "ag-grid-enterprise": "^28.2.0",
+    "ag-grid-vue3": "^28.2.0",
+    "axios": "^1.1.3",
+    "dayjs": "^1.11.5",
+    "es-module-shims": "^1.6.2",
+    "line-awesome": "^1.3.0",
+    "lodash": "^4.17.21",
+    "material-design-icons": "^3.0.1",
+    "material-design-icons-iconfont": "^6.7.0",
+    "material-icons": "^1.12.0",
+    "nanoid": "^4.0.0",
+    "qrcode.vue": "^3.3.3",
+    "quasar": "^2.10.0",
+    "uuid": "^9.0.0",
+    "vue": "^3.2.40",
+    "vue-demi": "^0.13.11",
+    "vue-i18n": "^9.2.2",
+    "vue-json-ui-editor": "^1.0.0",
+    "vue-router": "^4.1.5",
+    "vue3-sfc-loader": "^0.8.4",
+    "vuex": "^4.1.0",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.19.3",
+    "@storybook/addon-actions": "^6.5.12",
+    "@storybook/addon-essentials": "^6.5.12",
+    "@storybook/addon-interactions": "^6.5.12",
+    "@storybook/addon-links": "^6.5.12",
+    "@storybook/builder-webpack4": "^6.5.12",
+    "@storybook/manager-webpack4": "^6.5.12",
+    "@storybook/testing-library": "^0.0.13",
+    "@storybook/vue3": "^6.5.12",
+    "@types/uuid": "^8.3.4",
+    "@vue/compiler-sfc": "^3.2.41",
+    "babel-loader": "^8.2.5",
+    "msw": "^0.47.4",
+    "msw-storybook-addon": "^1.6.3",
+    "vue-loader": "^16.8.3"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "book": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook"
+  },
+  "author": "",
+  "license": "ISC",
+  "msw": {
+    "workerDirectory": "public"
+  }
+}
