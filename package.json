@@ -36,6 +36,7 @@
     "@storybook/addon-links": "^6.5.12",
     "@storybook/builder-webpack4": "^6.5.12",
     "@storybook/manager-webpack4": "^6.5.12",
+    "@storybook/test-runner": "^0.9.0",
     "@storybook/testing-library": "^0.0.13",
     "@storybook/vue3": "^6.5.12",
     "@types/uuid": "^8.3.4",
@@ -46,9 +47,10 @@
     "vue-loader": "^16.8.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "test-story --watch",
     "book": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "push": "git push -u origin main"
   },
   "author": "",
   "license": "ISC",
