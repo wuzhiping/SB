@@ -18,3 +18,8 @@ const Template = () => ({
 });
 
 export const Normal = Template.bind({});
+
+export const Stand = () => ({
+  components: {  "std":defineAsyncComponent(() =>import('../pages/form/stand.vue')) },
+  template: '<std />',
+});
