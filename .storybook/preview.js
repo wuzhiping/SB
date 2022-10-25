@@ -14,10 +14,15 @@ import { app } from '@storybook/vue3'
 import { Quasar, AppVisibility, Loading, LoadingBar, Notify, Dialog } from 'quasar'
 import * as VueRouter from 'vue-router'
 
+import axios from 'axios'
+
 const router = VueRouter.createRouter({
   history: VueRouter.createWebHashHistory(),
   routes: [ ],
 })
+
+
+app.config.globalProperties.$axios = axios
 
 app.use(router)
 

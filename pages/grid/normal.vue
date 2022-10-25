@@ -1,6 +1,6 @@
 <template>
   <div
-      style="
+    style="
         border:2px dotted red;
         height: calc(100% - 38px);
         height: 400px;
@@ -8,14 +8,14 @@
         margin: 0 12px;
         max-width: 96%;
       "
-    >
+  >
     <ag-grid-vue
-         style="height:100%;"
-        :columnDefs="columnDefs"
-        :rowData="rowData"
-        class="ag-theme-balham"
-      ></ag-grid-vue>
-      <!-- <ag-grid-vue
+      style="height:100%;"
+      :columnDefs="columnDefs.value"
+      :rowData="rowData.value"
+      class="ag-theme-balham"
+    ></ag-grid-vue>
+    <!-- <ag-grid-vue
         id="grid"
         class="ag-theme-balham"
         ref="grid"
@@ -33,32 +33,48 @@
         max-concurrent-datasource-requests="1"
         infinite-initial-row-count="150"
         max-blocks-in-cache="10"
-      ></ag-grid-vue> -->
-    </div>
+    ></ag-grid-vue>-->
+  </div>
 </template>
 
 <script>
+import { reactive, computed, onMounted, getCurrentInstance } from "vue";
+import axios from "axios";
 export default {
-   components: { 
-                "ag-grid-vue":  (window["ag-grid-vue3"]||{}).AgGridVue 
-               },
-
-  data() {
+  components: {
+    "ag-grid-vue": (window["ag-grid-vue3"] || {}).AgGridVue
+  },
+  setup(props) {
+    const { proxy } = getCurrentInstance();
+    const rowData = reactive({});
+    const columnDefs = reactive({
+      value: [
+        { headerName: "Row ID", field: "id" },
+        { field: "make" },
+        { field: "model" },
+        { field: "price" }
+      ]
+    });
+    onMounted(() => {
+      axios.post("/api/model/demo").then(res => {
+        rowData.value = res.data;
+      });
+    });
     return {
-      columnDefs: [
-        { field: "abstractinfo" },
-        { field: "currentbalance" },
-        { field: "payeeacctname",width:400 }
-        
-      ],
-      rowData: []
+      rowData,
+      columnDefs
     };
   },
-  
+  data() {
+    return {};
+  },
+  methods: {
+    mockData() {}
+  },
   created() {
     console.dir(window["ag-grid-vue3"]);
-  }
-
+  },
+  mounted() {}
 };
 </script>
 
