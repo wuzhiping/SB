@@ -45,4 +45,17 @@ Normal.parameters = {
   ],
 };
 
+Stand.parameters = {
+  msw: [
+    rest.post("/api/model/demo", (req, res, ctx) => {
+      return res(
+        ctx.json(
+          gridData
+        )
+      );
+    })
+  ],
+};
+
+
 
