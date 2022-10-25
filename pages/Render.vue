@@ -18,7 +18,7 @@ import {
   defineAsyncComponent,
 } from "vue";
 
-import { useRoute, useRouter } from "vueRouter";
+import { useRoute, useRouter } from "vue-router";
 
 export default {
   name: "render",
