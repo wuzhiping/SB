@@ -3,6 +3,7 @@ import '../node_modules/ag-grid-community/dist/styles/ag-theme-balham.min.css'
 
 // import '../node_modules/ag-grid-enterprise/dist/ag-grid-enterprise.min.noStyle.js'
 // import '../node_modules/ag-grid-vue3/dist/ag-grid-vue3.umd.js'
+import '../assets/css/main.css';
 import './jsLoader';
 
 import 'material-icons/iconfont/material-icons.css';

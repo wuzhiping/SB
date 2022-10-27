@@ -1,5 +1,5 @@
 <template>
-  <div
+  <!-- <div
     style="
         border:2px dotted red;
         height: calc(100% - 38px);
@@ -14,8 +14,8 @@
       :columnDefs="columnDefs.value"
       :rowData="rowData.value"
       class="ag-theme-balham"
-    ></ag-grid-vue>
-    <!-- <ag-grid-vue
+  ></ag-grid-vue>-->
+  <!-- <ag-grid-vue
         id="grid"
         class="ag-theme-balham"
         ref="grid"
@@ -33,7 +33,16 @@
         max-concurrent-datasource-requests="1"
         infinite-initial-row-count="150"
         max-blocks-in-cache="10"
-    ></ag-grid-vue>-->
+  ></ag-grid-vue>-->
+  <!-- </div> -->
+
+  <div style="height:calc(100% - 50px)">
+    <ag-grid-vue
+      style="height:100%;"
+      :columnDefs="columnDefs.value"
+      :rowData="rowData.value"
+      class="ag-theme-balham"
+    ></ag-grid-vue>
   </div>
 </template>
 

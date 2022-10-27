@@ -1,10 +1,13 @@
 <template>
   <div v-if="viewName">
-    <span>{{ viewName }}</span>
-
-    <transition name="fade">
-      <component :is="comp"></component>
-    </transition>
+<!--    <span>{{ viewName }}</span>-->
+    <q-page>
+      <div class="fe-content">
+        <transition name="fade">
+          <component :is="comp"></component>
+        </transition>
+      </div>
+    </q-page>
   </div>
 </template>
 
@@ -15,7 +18,7 @@ import {
   onBeforeMount,
   onMounted,
   watch,
-  defineAsyncComponent,
+  defineAsyncComponent
 } from "vue";
 
 import { useRoute, useRouter } from "vue-router";
@@ -43,10 +46,10 @@ export default {
 
     return {
       comp,
-      viewName,
+      viewName
     };
   },
-  methods: {}, //END methods
+  methods: {} //END methods
 };
 </script>
 

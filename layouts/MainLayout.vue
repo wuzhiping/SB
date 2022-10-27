@@ -1,6 +1,6 @@
 <template>
   <q-layout view="lHh Lpr lff">
-    <q-header reveal :class="`bg-transparent text-black nx-layout-header`">
+    <q-header reveal :class="`bg-transparent text-black nx-layout-header`" style="border-bottom:1px dotted #ddd;">
       <q-toolbar class="q-my-sm">
         <!-- <q-btn flat round color="primary" :icon="`las ${isHome ? 'la-home' : 'la-arrow-left'}`" @click="goBack"></q-btn> -->
         <q-btn flat round replace to="/">
@@ -20,11 +20,11 @@
       </q-toolbar>
     </q-header>
 
-    <q-footer reveal class="nx-footer q-pa-sm transparent flex flex-center">
-      <q-card flat class="nx-nav nx-radius-lg">
-        <q-card-section class="q-pa-xs"> footer </q-card-section>
-      </q-card>
-    </q-footer>
+<!--    <q-footer reveal class="nx-footer q-pa-sm transparent flex flex-center">-->
+<!--      <q-card flat class="nx-nav nx-radius-lg">-->
+<!--        <q-card-section class="q-pa-xs"> footer </q-card-section>-->
+<!--      </q-card>-->
+<!--    </q-footer>-->
 
     <q-page-container>
       <router-view v-slot="{ Component }">
