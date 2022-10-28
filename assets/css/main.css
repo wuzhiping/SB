@@ -6,14 +6,14 @@ body,
    padding: 0;
 }
 
-/* html {
-   background: url(./loading.gif) no-repeat center center fixed;
+ html {
+   background: url(../loading.gif) no-repeat center center fixed;
    -webkit-background-size: center;
    -moz-background-size: center;
    -o-background-size: center;
    background-size: center;
-   overflow-y: hidden;
-} */
+   overflow-x: hidden;
+} 
 
 .fe-app {
    position: absolute;

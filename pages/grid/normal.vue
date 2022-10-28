@@ -65,9 +65,29 @@ export default {
       ]
     });
     onMounted(() => {
-      axios.post("/api/model/demo").then(res => {
-        rowData.value = res.data;
-      });
+      axios
+        .post("/api/model/demo")
+        .then(res => {
+          proxy.$q.notify({
+            message: "success",
+            color: "orange"
+          });
+          rowData.value = res.data;
+        })
+        .catch(err => {
+          try {
+            proxy.$q.notify({
+              message: err.message,
+              color: "red"
+            });
+          } catch (error) {
+            proxy.$q.notify({
+              message: error,
+              color: "red"
+            });
+          }
+          rowData.value = [];
+        });
     });
     return {
       rowData,
