@@ -9,7 +9,6 @@
     "ag-grid-vue3": "^28.2.0",
     "axios": "^1.1.3",
     "dayjs": "^1.11.5",
-    "es-module-shims": "^1.6.2",
     "line-awesome": "^1.3.0",
     "lodash": "^4.17.21",
     "material-design-icons": "^3.0.1",
@@ -47,9 +46,11 @@
     "vue-loader": "^16.8.3"
   },
   "scripts": {
+    "umd": "npm install vue vue3-sfc-loader axios vue-router quasar material-icons line-awesome ag-grid-community ag-grid-vue3",
     "test": "test-story --watch",
     "book": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook",
+    "diff": "git diff HEAD^ ",
     "push": "git push -u origin main"
   },
   "author": "",
