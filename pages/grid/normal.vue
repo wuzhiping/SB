@@ -48,7 +48,7 @@
 
 <script>
 import { reactive, computed, onMounted, getCurrentInstance } from "vue";
-import axios from "axios";
+//import axios from "axios";
 export default {
   components: {
     "ag-grid-vue": (window["ag-grid-vue3"] || {}).AgGridVue
@@ -65,7 +65,7 @@ export default {
       ]
     });
     onMounted(() => {
-      axios
+      proxy.$axios
         .post("/api/model/demo")
         .then(res => {
           proxy.$q.notify({
@@ -98,7 +98,9 @@ export default {
     return {};
   },
   methods: {
-    mockData() {}
+    mockData() {
+      
+    }
   },
   created() {
     console.dir(window["ag-grid-vue3"]);

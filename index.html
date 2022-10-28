@@ -70,11 +70,19 @@
 <link href="./assets/css/main.css" rel="stylesheet" type="text/css">
 <script>
     const $$ = Vue;
+
+    //
+    axios.defaults.withCredentials = true;
+    axios.defaults.xsrfCookieName = "CSRF-TOKEN";
+    axios.defaults.xsrfHeaderName = "X-CSRF-Token";
+    axios.defaults.baseURL = "/";
+    //
+
     const options = {
         moduleCache: {
             vue: Vue,
             'vue-router': VueRouter,
-	    axios: axios,
+	        axios: axios,
             quasar: Quasar,
         },
         async getFile(url) {
@@ -128,6 +136,7 @@
             } 
         },
     };
+
     let app;
     const { loadModule } = window['vue3-sfc-loader'];
 
@@ -181,7 +190,8 @@
         //app.$indicator.close();
         })
 
-        app.use(Quasar)
+    app.config.globalProperties.$axios = axios;
+    app.use(Quasar)
            .use(router)
            //.use(i18n)
            .mount('#app');

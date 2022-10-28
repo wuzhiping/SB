@@ -22,7 +22,10 @@ const router = VueRouter.createRouter({
   routes: [ ],
 })
 
-
+axios.defaults.withCredentials = true;
+axios.defaults.xsrfCookieName = "CSRF-TOKEN";
+axios.defaults.xsrfHeaderName = "X-CSRF-Token";
+axios.defaults.baseURL = "/";
 app.config.globalProperties.$axios = axios
 
 app.use(router)
