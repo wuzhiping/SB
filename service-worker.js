@@ -42,7 +42,7 @@ self.addEventListener('fetch', e => {
   
           if(false
                || e.request.url.indexOf("/node_modules/") >0
-               || e.request.url.indexOf("?ver=") >0
+               || e.request.url.indexOf("?_ver_=") >0
                || (   e.request.url.indexOf("?_t_")==-1
                   && e.request.url.indexOf("/C4/")==-1
                   && e.request.url.indexOf(e.request.referrer)==0 

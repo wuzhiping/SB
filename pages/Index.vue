@@ -91,6 +91,11 @@ export default {
   },
   mounted() {
     console.dir("mounted");
+    window.parent.angular.element( window.parent.$('#offcanvas') ).addClass("inactive");
+
+    window.onbeforeunload  = function() {
+      window.parent.angular.element( window.parent.$('#offcanvas') ).removeClass("inactive");
+    };
     // window.parent.angular.element(window.parent.document.getElementsByClassName("fa-bars")).click();
   }
 };
